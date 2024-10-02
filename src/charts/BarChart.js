@@ -9,18 +9,18 @@ ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend)
 const BarChart = () => {
   // Sample data for the chart (You can pass this as props or fetch from an API)
   const data = {
-    labels: ['Math', 'English', 'Science', 'History', 'Geography'],  // Subjects or categories
+    labels: ['JFSD','EP','SVV','SPM'],  // Subjects or categories
     datasets: [
       {
         label: 'Student A Performance',
-        data: [85, 90, 78, 92, 80],  // Scores of Student A in each subject
+        data: [85, 90, 78, 92],
         backgroundColor: 'rgba(75, 192, 192, 0.6)',
         borderColor: 'rgba(75, 192, 192, 1)',
         borderWidth: 1,
       },
       {
         label: 'Student B Performance',
-        data: [75, 85, 88, 80, 70],  // Scores of Student B in each subject
+        data: [75, 85, 88, 80],  
         backgroundColor: 'rgba(255, 159, 64, 0.6)',
         borderColor: 'rgba(255, 159, 64, 1)',
         borderWidth: 1,
