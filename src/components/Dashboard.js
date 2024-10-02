@@ -1,12 +1,15 @@
+// src/components/Dashboard.js
+
 import React from 'react';
-import '../styles/Dashboard.css';
+import BarChart from '../charts/BarChart';
 
 const Dashboard = () => {
   return (
-    <div className="dashboard-container">
-      <div className="card">Overall Performance</div>
-      <div className="card">Recent Activity</div>
-      <div className="card">Student Rankings</div>
+    <div className="dashboard">
+      <h2>Class Performance Overview</h2>
+      <div className="chart-container">
+        <BarChart />
+      </div>
     </div>
   );
 };

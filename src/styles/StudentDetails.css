@@ -1,0 +1,10 @@
+/* src/styles/StudentDetails.css */
+.student-details {
+    padding: 20px;
+  }
+  
+  .student-info p {
+    font-size: 18px;
+    margin: 10px 0;
+  }
+  

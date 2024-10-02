@@ -1,23 +1,55 @@
+
 import React from 'react';
-import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts';
+import { Bar } from 'react-chartjs-2';
+import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from 'chart.js';
 
-const data = [
-  { name: 'Math', score: 85 },
-  { name: 'Science', score: 92 },
-  { name: 'English', score: 78 },
-];
+// Register the required components
+ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
-const CustomBarChart = () => {
-  return (
-    <ResponsiveContainer width="100%" height={300}>
-      <BarChart data={data}>
-        <XAxis dataKey="name" />
-        <YAxis />
-        <Tooltip />
-        <Bar dataKey="score" fill="#8884d8" />
-      </BarChart>
-    </ResponsiveContainer>
-  );
+const BarChart = () => {
+  // Sample data for the chart (You can pass this as props or fetch from an API)
+  const data = {
+    labels: ['JFSD','EP','SVV','SPM'],  // Subjects or categories
+    datasets: [
+      {
+        label: 'Student A Performance',
+        data: [85, 90, 78, 92],
+        backgroundColor: 'rgba(75, 192, 192, 0.6)',
+        borderColor: 'rgba(75, 192, 192, 1)',
+        borderWidth: 1,
+      },
+      {
+        label: 'Student B Performance',
+        data: [75, 85, 88, 80],  
+        backgroundColor: 'rgba(255, 159, 64, 0.6)',
+        borderColor: 'rgba(255, 159, 64, 1)',
+        borderWidth: 1,
+      },
+    ],
+  };
+
+  const options = {
+    responsive: true,
+    plugins: {
+      legend: {
+        position: 'top', // Position of the legend
+      },
+      title: {
+        display: true,
+        text: 'Student Performance in Different Subjects', // Chart title
+      },
+    },
+    scales: {
+      y: {
+        beginAtZero: true,
+        ticks: {
+          stepSize: 10, // Customize Y-axis interval
+        },
+      },
+    },
+  };
+
+  return <Bar data={data} options={options} />;
 };
 
-export default CustomBarChart;
+export default BarChart;

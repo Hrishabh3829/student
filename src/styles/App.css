@@ -1,0 +1,15 @@
+/* src/App.css */
+.app {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .main-content {
+    display: flex;
+  }
+  
+  .content {
+    flex-grow: 1;
+    padding: 20px;
+  }
+  
