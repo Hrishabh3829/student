@@ -1,5 +1,3 @@
-// src/App.js
-
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import Navbar from './components/Navbar';
@@ -8,35 +6,32 @@ import Dashboard from './components/Dashboard';
 import StudentDetails from './components/StudentDetails';
 import ClassPerformance from './components/ClassPerformance';
 import Login from './components/Login';
-import Admin from './components/Admin';
-import ProtectedRoute from './components/ProtectedRoute'; // For protecting routes
+import ProtectedRoute from './components/ProtectedRoute';
 import './styles/App.css';
 
 function App() {
-  // State to manage if the user is authenticated
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(false);
 
-  // Handle login, set authentication status to true
-  const handleLogin = (status) => {
+  const handleLogin = (status, adminStatus) => {
     setIsAuthenticated(status);
+    setIsAdmin(adminStatus);
   };
 
   return (
     <Router>
       <div className="app">
-        {/* Conditionally render Navbar and Sidebar only if user is authenticated */}
         {isAuthenticated && <Navbar />}
         {isAuthenticated && (
           <div className="main-content">
             <Sidebar />
             <div className="content">
               <Routes>
-                {/* Routes for authenticated users */}
                 <Route
                   path="/dashboard"
                   element={
                     <ProtectedRoute isAuthenticated={isAuthenticated}>
-                      <Dashboard />
+                      <Dashboard isAdmin={isAdmin} />
                     </ProtectedRoute>
                   }
                 />
@@ -56,26 +51,15 @@ function App() {
                     </ProtectedRoute>
                   }
                 />
-                <Route
-                  path="/admin"
-                  element={
-                    <ProtectedRoute isAuthenticated={isAuthenticated}>
-                      <Admin />
-                    </ProtectedRoute>
-                  }
-                />
-                {/* Fallback route for authenticated users */}
                 <Route path="*" element={<Navigate to="/dashboard" />} />
               </Routes>
             </div>
           </div>
         )}
 
-        {/* Display login if not authenticated */}
         {!isAuthenticated && (
           <Routes>
             <Route path="/" element={<Login onLogin={handleLogin} />} />
-            {/* Redirect any authenticated page back to login */}
             <Route path="*" element={<Navigate to="/" />} />
           </Routes>
         )}

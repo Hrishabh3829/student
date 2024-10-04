@@ -1,5 +1,3 @@
-// src/components/Login.js
-
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../styles/Login.css';  
@@ -8,23 +6,36 @@ const Login = ({ onLogin }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const [isAdminMode, setIsAdminMode] = useState(false);
   const navigate = useNavigate();
 
   const handleLogin = (e) => {
     e.preventDefault();
 
-    // Example hardcoded credentials (replace with actual backend verification)
-    if (username === 'admin' && password === 'password') {
-      onLogin(true);  // Set isAuthenticated to true
-      navigate('/dashboard');  // Redirect to dashboard
+    if (isAdminMode && username === 'admin' && password === 'password') {
+      onLogin(true, true);  
+      navigate('/dashboard');
+    } else if (!isAdminMode && username === 'user' && password === 'password') {
+      onLogin(true, false);  
+      navigate('/dashboard');
     } else {
       setError('Invalid username or password');
     }
   };
 
+  const toggleAdminMode = () => {
+    setIsAdminMode(!isAdminMode);
+    setError('');
+  };
+
   return (
-    <div className="login-container">
-      <h2>Login</h2>
+    <div className={`login-container ${isAdminMode ? 'admin-mode' : ''}`}>
+      <div className="top-right">
+        <button onClick={toggleAdminMode}>
+          {isAdminMode ? 'Switch to User' : 'Switch to Admin'}
+        </button>
+      </div>
+      <h2>{isAdminMode ? 'Admin Login' : 'User Login'}</h2>
       {error && <p className="error">{error}</p>}
       <form onSubmit={handleLogin}>
         <div className="form-group">
@@ -45,7 +56,7 @@ const Login = ({ onLogin }) => {
             required
           />
         </div>
-        <button type="submit">Login</button>
+        <button type="submit">{isAdminMode ? 'Login as Admin' : 'Login as User'}</button>
       </form>
     </div>
   );

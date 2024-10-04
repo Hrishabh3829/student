@@ -1,15 +1,14 @@
-// src/components/Dashboard.js
-
 import React from 'react';
 import BarChart from '../charts/BarChart';
 
-const Dashboard = () => {
+const Dashboard = ({ isAdmin }) => {
   return (
-    <div className="dashboard">
-      <h2>Class Performance Overview</h2>
-      <div className="chart-container">
-        <BarChart />
-      </div>
+    <div>
+      {isAdmin ? (
+        <h2>Welcome, Admin!</h2>
+      ) : (
+        <><h2>Welcome, User!</h2><BarChart /></>
+      )}
     </div>
   );
 };
