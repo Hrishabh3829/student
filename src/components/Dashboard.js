@@ -1,186 +1,252 @@
-import * as React from 'react';
-import { extendTheme, styled } from '@mui/material/styles';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import {
+    Box,
+    Button,
+    CssBaseline,
+} from '@mui/material';
+import HomeIcon from '@mui/icons-material/Home';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import ArticleIcon from '@mui/icons-material/Article';
 import BarChartIcon from '@mui/icons-material/BarChart';
 import DescriptionIcon from '@mui/icons-material/Description';
 import LayersIcon from '@mui/icons-material/Layers';
-import { AppProvider } from '@toolpad/core/AppProvider';
-import { DashboardLayout } from '@toolpad/core/DashboardLayout';
-import { PageContainer } from '@toolpad/core/PageContainer';
-import Grid from '@mui/material/Grid2';
-import HomeIcon from '@mui/icons-material/Home';
-import ArticleIcon from '@mui/icons-material/Article';
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import SettingsIcon from '@mui/icons-material/Settings';
 import FeedbackIcon from '@mui/icons-material/Feedback';
 import LogoutIcon from '@mui/icons-material/Logout';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import ExpandLessIcon from '@mui/icons-material/ExpandLess';
+import MenuIcon from '@mui/icons-material/Menu';
+import Brightness4Icon from '@mui/icons-material/Brightness4';
+import Brightness7Icon from '@mui/icons-material/Brightness7';
 
-const Dashboard = [
-    {
-        kind: 'header',
-        title: 'Student Portal',
-    },
-    {
-        segment: 'Home',
-        title: 'Home',
-        icon: <HomeIcon />,
-    },
-    {
-        segment: 'student',
-        title: 'Student Profile',
-        icon: <AccountCircleIcon />,
-    },
-    {
-        segment: 'courses',
-        title: 'Courses',
-        icon: <ArticleIcon />,
-    },
-    {
-        kind: 'divider',
-    },
-    {
-        kind: 'header',
-        title: 'Analytics',
-    },
+const DashboardItems = [
+    { kind: 'header', title: 'Student Portal' },
+    { segment: 'home', title: 'Home', icon: <HomeIcon fontSize="small" /> },
+    { segment: 'student', title: 'Student Profile', icon: <AccountCircleIcon fontSize="small" /> },
+    { segment: 'courses', title: 'Courses', icon: <ArticleIcon fontSize="small" /> },
+    { kind: 'divider' },
+    { kind: 'header', title: 'Analytics' },
     {
         segment: 'reports',
         title: 'Reports',
-        icon: <BarChartIcon />,
+        icon: <BarChartIcon fontSize="small" />,
         children: [
-            {
-                segment: 'student report',
-                title: 'Student Report',
-                icon: <DescriptionIcon />,
-            },
-            {
-                segment: 'student attendance',
-                title: 'Student Attendance',
-                icon: <DescriptionIcon />,
-            },
+            { segment: 'student-report', title: 'Student Report', icon: <DescriptionIcon fontSize="small" /> },
+            { segment: 'student-attendance', title: 'Student Attendance', icon: <DescriptionIcon fontSize="small" /> },
         ],
     },
-    {
-        segment: 'integrations',
-        title: 'Integrations',
-        icon: <LayersIcon />,
-    },
-    {
-        segment: 'setting',
-        title: 'Settings',
-        icon: <SettingsIcon />,
-    },
-    {
-        segment: 'feedback',
-        title: 'Feedback',
-        icon: <FeedbackIcon />,
-    },
-    {
-        segment: 'log out',
-        title: 'Logout',
-        icon: <LogoutIcon />,
-    },
+    { segment: 'integrations', title: 'Integrations', icon: <LayersIcon fontSize="small" /> },
+    { segment: 'setting', title: 'Settings', icon: <SettingsIcon fontSize="small" /> },
+    { segment: 'feedback', title: 'Feedback', icon: <FeedbackIcon fontSize="small" /> },
 ];
 
-const demoTheme = extendTheme({
-    colorSchemes: { light: true, dark: true },
-    colorSchemeSelector: 'class',
-    breakpoints: {
-        values: {
-            xs: 0,
-            sm: 600,
-            md: 600,
-            lg: 1200,
-            xl: 1536,
-        },
-    },
-});
+export default function DashboardLayout() {
+    const navigate = useNavigate();
+    const [expanded, setExpanded] = useState(false);
+    const [darkMode, setDarkMode] = useState(true);
+    const [collapsed, setCollapsed] = useState(true);
 
-function useDemoRouter(initialPath) {
-    const [pathname, setPathname] = React.useState(initialPath);
-
-    const router = React.useMemo(() => {
-        return {
-            pathname,
-            searchParams: new URLSearchParams(),
-            navigate: (path) => setPathname(String(path)),
-        };
-    }, [pathname]);
-
-    return router;
-}
-
-const Skeleton = styled('div')(({ theme, height }) => ({
-    backgroundColor: theme.palette.action.hover,
-    borderRadius: theme.shape.borderRadius,
-    height,
-    content: '" "',
-}));
-
-export default function DashboardLayoutBasic(props) {
-    const { window } = props;
-    const navigate = useNavigate(); // Initialize useNavigate hook
-
-    const handleLogout = () => {
-        // Perform any logout logic here if necessary
-        navigate('/'); // Redirect to Login page
+    const handleNavigation = (path) => {
+        if (path === 'logout') {
+            navigate('/');
+        } else {
+            navigate(`/${path}`);
+        }
     };
 
-    const router = useDemoRouter('/dashboard');
-
-    const demoWindow = window ? window() : undefined;
+    const toggleDarkMode = () => setDarkMode(!darkMode);
+    const toggleSidebar = () => setCollapsed(!collapsed);
+    const handleReportsClick = () => {
+        setExpanded(!expanded);
+        setCollapsed(false); // Ensure sidebar is expanded
+    };
 
     return (
-        <AppProvider
-            navigation={Dashboard}
-            router={router}
-            theme={demoTheme}
-            window={demoWindow}
-        >
-            <DashboardLayout>
-                <PageContainer>
-                    <Grid container spacing={1}>
-                        <Grid size={5} />
-                        <Grid size={12}>
-                            <Skeleton height={14} />
-                        </Grid>
-                        <Grid size={12}>
-                            <Skeleton height={14} />
-                        </Grid>
-                        <Grid size={4}>
-                            <Skeleton height={100} />
-                        </Grid>
-                        <Grid size={8}>
-                            <Skeleton height={100} />
-                        </Grid>
+        <>
+            <CssBaseline />
+            <Box
+                sx={{
+                    height: '100vh',
+                    backgroundColor: darkMode ? '#000' : '#fff',
+                    color: darkMode ? '#fff' : '#000',
+                    display: 'flex',
+                }}
+            >
+                {/* Sidebar */}
+                <Box
+                    sx={{
+                        width: collapsed ? '60px' : '250px',
+                        backgroundColor: darkMode ? '#1a1a1a' : '#f5f5f5',
+                        padding: '20px 10px',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        gap: 1.5,
+                        transition: 'width 0.3s',
+                        overflow: 'hidden',
+                    }}
+                >
+                    {/* Sidebar Toggle Button */}
+                    <Button
+                        onClick={toggleSidebar}
+                        sx={{
+                            backgroundColor: 'transparent',
+                            color: darkMode ? '#fff' : '#1976d2',
+                            minWidth: '40px',
+                            minHeight: '40px',
+                            borderRadius: '50%',
+                            display: 'flex',
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                            '&:hover': {
+                                backgroundColor: darkMode ? '#333' : '#e0e0e0',
+                            },
+                            marginBottom: '20px',
+                        }}
+                    >
+                        <MenuIcon fontSize="small" />
+                    </Button>
 
-                        <Grid size={12}>
-                            <Skeleton height={150} />
-                        </Grid>
-                        <Grid size={12}>
-                            <Skeleton height={14} />
-                        </Grid>
+                    {DashboardItems.map((item, index) => {
+                        if (item.kind === 'header' || item.kind === 'divider') return null;
 
-                        <Grid size={3}>
-                            <Skeleton height={100} />
-                        </Grid>
-                        <Grid size={3}>
-                            <Skeleton height={100} />
-                        </Grid>
-                        <Grid size={3}>
-                            <Skeleton height={100} />
-                        </Grid>
-                        <Grid size={3}>
-                            <Skeleton height={100} />
-                        </Grid>
-                    </Grid>
-                </PageContainer>
-                {/* Your existing Logout button */}
-                <button onClick={handleLogout}>
-                    Logout
-                </button>
-            </DashboardLayout>
-        </AppProvider>
+                        if (item.segment === 'reports') {
+                            return (
+                                <Box key={index}>
+                                    <Button
+                                        fullWidth
+                                        variant="text"
+                                        startIcon={item.icon}
+                                        endIcon={expanded ? <ExpandLessIcon /> : <ExpandMoreIcon />}
+                                        onClick={handleReportsClick}
+                                        sx={{
+                                            backgroundColor: 'transparent',
+                                            color: darkMode ? '#fff' : '#1976d2',
+                                            justifyContent: 'flex-start',
+                                            alignItems: 'center',
+                                            '&:hover': {
+                                                backgroundColor: darkMode ? '#333' : '#e0e0e0',
+                                            },
+                                            padding: '8px 10px',
+                                            textAlign: 'left',
+                                            gap: 1,
+                                        }}
+                                    >
+                                        {!collapsed && item.title}
+                                    </Button>
+                                    {expanded &&
+                                        item.children.map((child, childIndex) => (
+                                            <Button
+                                                key={childIndex}
+                                                fullWidth
+                                                variant="text"
+                                                startIcon={child.icon}
+                                                onClick={() => handleNavigation(child.segment)}
+                                                sx={{
+                                                    backgroundColor: 'transparent',
+                                                    color: darkMode ? '#fff' : '#1976d2',
+                                                    display: 'flex',
+                                                    justifyContent: 'flex-start',
+                                                    alignItems: 'center',
+                                                    marginLeft: '20px',
+                                                    '&:hover': {
+                                                        backgroundColor: darkMode ? '#333' : '#e0e0e0',
+                                                    },
+                                                    padding: '8px 10px',
+                                                    gap: 1,
+                                                }}
+                                            >
+                                                {!collapsed && child.title}
+                                            </Button>
+                                        ))}
+                                </Box>
+                            );
+                        }
+
+                        return (
+                            <Button
+                                key={index}
+                                fullWidth
+                                variant="text"
+                                startIcon={item.icon}
+                                onClick={() => handleNavigation(item.segment)}
+                                sx={{
+                                    backgroundColor: 'transparent',
+                                    color: darkMode ? '#fff' : '#1976d2',
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    justifyContent: 'flex-start',
+                                    '&:hover': {
+                                        backgroundColor: darkMode ? '#333' : '#e0e0e0',
+                                    },
+                                    padding: '8px 10px',
+                                    gap: 1,
+                                }}
+                            >
+                                {!collapsed && item.title}
+                            </Button>
+                        );
+                    })}
+
+                    {/* Logout Button */}
+                    <Button
+                        fullWidth
+                        variant="text"
+                        startIcon={<LogoutIcon />}
+                        onClick={() => handleNavigation('logout')}
+                        sx={{
+                            backgroundColor: 'transparent',
+                            color: '#d32f2f',
+                            marginTop: 'auto',
+                            '&:hover': {
+                                backgroundColor: darkMode ? '#333' : '#f5f5f5',
+                                color: '#d32f2f',
+                            },
+                            padding: '8px 10px',
+                        }}
+                    >
+                        {!collapsed && 'Logout'}
+                    </Button>
+                </Box>
+
+                {/* Dark Mode Toggle */}
+                <Box
+                    sx={{
+                        position: 'absolute',
+                        top: '20px',
+                        right: '20px',
+                        zIndex: 1,
+                    }}
+                >
+                    <Button
+                        variant="contained"
+                        onClick={toggleDarkMode}
+                        sx={{
+                            backgroundColor: darkMode ? '#fff' : '#1976d2',
+                            color: darkMode ? '#1976d2' : '#fff',
+                            '&:hover': {
+                                backgroundColor: '#1976d2',
+                                color: '#fff',
+                            },
+                        }}
+                    >
+                        {darkMode ? <Brightness7Icon /> : <Brightness4Icon />}
+                    </Button>
+                </Box>
+
+                {/* Main Content */}
+                <Box
+                    sx={{
+                        flexGrow: 1,
+                        padding: '20px',
+                        backgroundColor: darkMode ? '#111' : '#f5f5f5',
+                        color: darkMode ? '#fff' : '#000',
+                        textAlign: 'center',
+                    }}
+                >
+                    <h1>Welcome to the Dashboard!</h1>
+                </Box>
+            </Box>
+        </>
     );
 }
-
-export { Dashboard };
