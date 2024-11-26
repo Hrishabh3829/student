@@ -1,0 +1,6 @@
+.hotelsPage {
+  background-color: var(--color-white);
+  max-width: 100%;
+  width: 1440px;
+  overflow: hidden;
+}

@@ -1,0 +1,17 @@
+.homepage {
+  background-color: var(--color-white);
+  max-width: 100%;
+  width: 1440px;
+  overflow: hidden;
+}
+.homepage:hover {
+  background: linear-gradient(#fff, #fff), #87550a;
+}
+@media screen and (max-width: 650px) {
+  .homepage {
+    width: 100%;
+  }
+  .homepage:hover {
+    background-color: #f99a0e;
+  }
+}
