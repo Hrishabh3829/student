@@ -45,22 +45,22 @@ const DashboardItems = [
 export default function DashboardLayout() {
     const navigate = useNavigate();
     const [expanded, setExpanded] = useState(false);
-    const [darkMode, setDarkMode] = useState(true);
+    const [darkMode, setDarkMode] = useState(false); // Set default to false for white theme
     const [collapsed, setCollapsed] = useState(true);
 
     const handleNavigation = (path) => {
         if (path === "logout") {
-            navigate("/");
+            navigate("/"); // Navigate to the home page on logout
         } else {
-            navigate(`/${path}`);
+            navigate(`/${path}`); // Navigate to the given path
         }
     };
 
-    const toggleDarkMode = () => setDarkMode(!darkMode);
-    const toggleSidebar = () => setCollapsed(!collapsed);
+    const toggleDarkMode = () => setDarkMode(!darkMode); // Toggle between dark and light modes
+    const toggleSidebar = () => setCollapsed(!collapsed); // Toggle sidebar collapsed state
     const handleReportsClick = () => {
         setExpanded(!expanded);
-        setCollapsed(false); // Ensure sidebar is expanded
+        setCollapsed(false); // Ensure sidebar is expanded when clicking on reports
     };
 
     return (
@@ -69,16 +69,16 @@ export default function DashboardLayout() {
             <Box
                 sx={{
                     height: "100vh",
-                    backgroundColor: darkMode ? "#000" : "#fff",
-                    color: darkMode ? "#fff" : "#000",
+                    backgroundColor: darkMode ? "#000" : "#fff", // Set background color based on theme
+                    color: darkMode ? "#fff" : "#000", // Set text color based on theme
                     display: "flex",
                 }}
             >
                 {/* Sidebar */}
                 <Box
                     sx={{
-                        width: collapsed ? "60px" : "250px",
-                        backgroundColor: darkMode ? "#1a1a1a" : "#f5f5f5",
+                        width: collapsed ? "60px" : "250px", // Adjust sidebar width based on collapsed state
+                        backgroundColor: darkMode ? "#1a1a1a" : "#f5f5f5", // Sidebar background color based on theme
                         padding: "20px 10px",
                         display: "flex",
                         flexDirection: "column",
