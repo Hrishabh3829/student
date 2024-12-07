@@ -1,0 +1,8 @@
+.chart-container {
+    width: 50%; /* Resized to cover half the page */
+    margin: 0 auto; /* Center the chart */
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9; /* Optional background for aesthetics */
+}
