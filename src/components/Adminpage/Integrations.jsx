@@ -14,9 +14,15 @@ const Integrations = () => {
     const handleCourseChange = (e) => setStudentCourse(e.target.value);  // Update student course
 
     const handleClick = async () => {
+        // Check if student name and course are both not empty
+        if (!studentName.trim() || !studentCourse.trim()) {
+            alert("Please enter both student name and course.");
+            return;  // Exit the function early if fields are empty
+        }
+
         const student = {
-            "name":studentName.toUpperCase(),
-            "studentcourse":studentCourse.toUpperCase()
+            "name": studentName.toUpperCase(),
+            "studentcourse": studentCourse.toUpperCase()
         };
 
         try {
@@ -29,14 +35,10 @@ const Integrations = () => {
             });
 
             if (response.ok) {
-                // Read the response as text, not JSON
-                const text = await response.text(); // Read the response as plain text
-
-                // Log the entered data and the server's response
+                const text = await response.text();
                 console.log("Entered Student Data:", student);
                 console.log("Server response:", text);
 
-                // Handle the plain text response
                 if (text === "New student added") {
                     console.log("New student added successfully!");
                 } else {
