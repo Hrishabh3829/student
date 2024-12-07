@@ -10,7 +10,7 @@ import Settings from './components/Adminpage/Settings'
 import StudentAttendance from "./components/Adminpage/Student-attendance";
 import StudentReport from "./components/Adminpage/Student-report";
 import Integrations from "./components/Adminpage/Integrations";
-import Feedback from "./components/Adminpage/Feedback";
+import About from "./components/Adminpage/About";
 
 
 const App = () => {
@@ -27,7 +27,7 @@ const App = () => {
                 <Route path="/reports/student-attendance" element={<StudentAttendance />} />
                 <Route path="/integrations" element={<Integrations />} />
                 <Route path="/settings" element={<Settings />} />
-                <Route path="/feedback" element={<Feedback />} />
+                <Route path="/About" element={<About />} />
             </Routes>
         </Router>
     );

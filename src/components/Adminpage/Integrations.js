@@ -15,8 +15,8 @@ const Integrations = () => {
 
     const handleClick = async () => {
         const student = {
-            name: studentName,
-            course: studentCourse,
+            "name":studentName.toUpperCase(),
+            "studentcourse":studentCourse.toUpperCase()
         };
 
         try {
