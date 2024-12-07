@@ -13,13 +13,14 @@ import BarChartIcon from "@mui/icons-material/BarChart";
 import DescriptionIcon from "@mui/icons-material/Description";
 import LayersIcon from "@mui/icons-material/Layers";
 import SettingsIcon from "@mui/icons-material/Settings";
-import FeedbackIcon from "@mui/icons-material/Feedback";
+import InfoIcon from '@mui/icons-material/Info';
 import LogoutIcon from "@mui/icons-material/Logout";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 import MenuIcon from "@mui/icons-material/Menu";
 import Brightness4Icon from "@mui/icons-material/Brightness4";
 import Brightness7Icon from "@mui/icons-material/Brightness7";
+import {Info} from "@mui/icons-material";
 
 const DashboardItems = [
     { kind: "header", title: "Student Portal" },
@@ -39,7 +40,7 @@ const DashboardItems = [
     },
     { segment: "integrations", title: "Integrations", icon: <LayersIcon fontSize="small" /> },
     { segment: "settings", title: "Settings", icon: <SettingsIcon fontSize="small" /> },
-    { segment: "feedback", title: "Feedback", icon: <FeedbackIcon fontSize="small" /> },
+    { segment: "About", title: "About", icon: <Info fontSize="small" /> },
 ];
 
 export default function DashboardLayout() {
