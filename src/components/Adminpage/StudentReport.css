@@ -1,0 +1,42 @@
+.student-report-container {
+    max-width: 80%; /* Limit the width of the container */
+    margin: 0 auto; /* Center-align the container */
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.report-title {
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.chart-container {
+    position: relative;
+    height: 400px; /* Fixed height for the chart container */
+    width: 100%; /* The chart container takes up the full width of its parent */
+    max-width: 900px; /* Max width to prevent it from stretching too much */
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+}
+
+@media (max-width: 768px) {
+    .student-report-container {
+        max-width: 100%;
+        padding: 10px;
+    }
+
+    .report-title {
+        font-size: 20px;
+    }
+
+    .chart-container {
+        height: 300px; /* Adjust height for smaller screens */
+        width: 100%;
+    }
+}
