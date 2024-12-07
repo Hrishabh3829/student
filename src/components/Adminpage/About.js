@@ -29,9 +29,9 @@ const About = () => {
                         </p>
                     </div>
                     <div className="team-member">
-                        <h3>Summit Kumar Gupta</h3>
+                        <h3>Sumit Kumar Gupta</h3>
                         <p>
-                            Summit Kumar Gupta is a key member of the team, contributing to both the backend and
+                            Sumit Kumar Gupta is a key member of the team, contributing to both the backend and
                             frontend, working on the implementation of student performance tracking and data analysis.
                         </p>
                     </div>

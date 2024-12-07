@@ -1,6 +1,6 @@
 import React from "react";
 import "./StudentProfiles.css";
-import InsertEmoticonIcon from '@mui/icons-material/InsertEmoticon';
+import InsertEmoticonIcon from "@mui/icons-material/InsertEmoticon";
 
 const StudentProfiles = ({ students }) => {
     return (
@@ -8,14 +8,20 @@ const StudentProfiles = ({ students }) => {
             {students.map((student) => (
                 <div key={student.id} className="student-card">
                     <div className="profile-photo">
-                        {/*<img src={student.profileImage} alt={`${student.name}'s profile`} />*/}
-                        <InsertEmoticonIcon/>
+                        {/* Profile picture or icon */}
+                        <InsertEmoticonIcon />
                     </div>
                     <div className="student-info">
                         <h3>{student.name}</h3>
-                        <p><strong>ID:</strong> {student.id}</p>
-                        <p><strong>Total Marks:</strong> {student.studentmarks}</p>
-                        <p><strong>Course:</strong> {student.studentcourse}</p>
+                        <p>
+                            <strong>ID:</strong> {student.id}
+                        </p>
+                        <p>
+                            <strong>Total Marks:</strong> {student.studentmarks}
+                        </p>
+                        <p>
+                            <strong>Course:</strong> {student.studentcourse}
+                        </p>
                     </div>
                 </div>
             ))}

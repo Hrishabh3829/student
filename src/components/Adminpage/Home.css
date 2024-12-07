@@ -1,8 +1,39 @@
-.chart-container {
-    width: 50%; /* Resized to cover half the page */
-    margin: 0 auto; /* Center the chart */
+/* Main container for the chart and title */
+.main-container {
+    width: 95%;
+    max-width: 1200px;
+    margin: 20px auto; /* Center the card */
     padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    background-color: #f9f9f9; /* Optional background for aesthetics */
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    overflow: hidden; /* Prevent horizontal scrolling */
+}
+
+/* Title styling */
+.main-title {
+    font-family: "Arial", sans-serif;
+    font-size: 1.6rem; /* Balanced font size */
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Chart wrapper ensures proper spacing */
+.chart-wrapper {
+    width: 100%;
+    padding: 10px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .main-title {
+        font-size: 1.4rem; /* Smaller title for compact screens */
+    }
+
+    .main-container {
+        padding: 15px; /* Compact padding */
+    }
 }

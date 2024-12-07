@@ -2,27 +2,28 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import Brightness4Icon from "@mui/icons-material/Brightness4";
 import Brightness7Icon from "@mui/icons-material/Brightness7";
+import backgroundImage from "file:///C:/Users/hrish/Downloads/How-to-prototype-dashboard-1.png.webp";
+import {Box} from "@mui/material";
 
 const Integrations = () => {
     const [darkMode, setDarkMode] = useState(false);
-    const [studentName, setStudentName] = useState("");  // State for student name
-    const [studentCourse, setStudentCourse] = useState("");  // State for student course
+    const [studentName, setStudentName] = useState("");
+    const [studentCourse, setStudentCourse] = useState("");
 
     const toggleDarkMode = () => setDarkMode(!darkMode);
 
-    const handleNameChange = (e) => setStudentName(e.target.value);  // Update student name
-    const handleCourseChange = (e) => setStudentCourse(e.target.value);  // Update student course
+    const handleNameChange = (e) => setStudentName(e.target.value);
+    const handleCourseChange = (e) => setStudentCourse(e.target.value);
 
     const handleClick = async () => {
-        // Check if student name and course are both not empty
         if (!studentName.trim() || !studentCourse.trim()) {
             alert("Please enter both student name and course.");
-            return;  // Exit the function early if fields are empty
+            return;
         }
 
         const student = {
-            "name": studentName.toUpperCase(),
-            "studentcourse": studentCourse.toUpperCase()
+            name: studentName.toUpperCase(),
+            studentcourse: studentCourse.toUpperCase(),
         };
 
         try {
@@ -36,19 +37,14 @@ const Integrations = () => {
 
             if (response.ok) {
                 const text = await response.text();
-                console.log("Entered Student Data:", student);
-                console.log("Server response:", text);
-
-                if (text === "New student added") {
-                    console.log("New student added successfully!");
-                } else {
-                    console.error("Unexpected response:", text);
-                }
+                alert(text); // Show the server's success message
+                setStudentName(""); // Clear the input fields
+                setStudentCourse("");
             } else {
-                console.error("Failed to add student:", response.statusText);
+                alert(`Failed to add student: ${response.statusText}`);
             }
         } catch (error) {
-            console.error("Error occurred while adding student:", error);
+            alert(`Error occurred: ${error.message}`);
         }
     };
 
@@ -69,7 +65,7 @@ const Integrations = () => {
                         type="text"
                         className="input"
                         value={studentName}
-                        onChange={handleNameChange}  // Update name on change
+                        onChange={handleNameChange}
                     />
                     <span className="bar" />
                     <label className="label">
@@ -90,7 +86,7 @@ const Integrations = () => {
                         type="text"
                         className="input"
                         value={studentCourse}
-                        onChange={handleCourseChange}  // Update course on change
+                        onChange={handleCourseChange}
                     />
                     <span className="bar" />
                     <label className="label">
@@ -107,15 +103,30 @@ const Integrations = () => {
                 </div>
             </div>
             <div className="button-container">
-                <button className="add-student-button" onClick={handleClick}>Add Student</button>
+                <button className="add-student-button" onClick={handleClick}>
+                    Add Student
+                </button>
             </div>
-
-            {/* Display typed values */}
             <div className="output-container">
                 <h3>Entered Data:</h3>
                 <p>Student Name: {studentName}</p>
                 <p>Student Course: {studentCourse}</p>
             </div>
+
+            <Box
+                sx={{
+                    position: "absolute",
+                    top: 0,
+                    left: 0,
+                    right: 0,
+                    bottom: 0,
+                    backgroundImage: `url(${backgroundImage})`,
+                    backgroundSize: "cover",
+                    backgroundRepeat: "no-repeat",
+                    backgroundPosition: "center",
+                    zIndex: -1, // Ensure the background is behind other elements
+                }}
+            />
         </StyledWrapper>
     );
 };
@@ -143,7 +154,6 @@ const StyledWrapper = styled.div`
     .navbar-title {
         font-size: 24px;
         font-weight: bold;
-        margin-right: 20px;
     }
 
     .toggle-container {
@@ -213,7 +223,8 @@ const StyledWrapper = styled.div`
     .wave-group .input:valid ~ label .label-char {
         transform: translateY(-20px);
         font-size: 14px;
-        color: ${(props) => (props.darkMode ? "rgba(17,139,237,0.9)" : "rgba(17,139,237,0.9)")};
+        color: ${(props) =>
+                props.darkMode ? "rgba(17,139,237,0.9)" : "rgba(17,139,237,0.9)"};
     }
 
     .wave-group .bar {
@@ -229,7 +240,8 @@ const StyledWrapper = styled.div`
         width: 0;
         bottom: 1px;
         position: absolute;
-        background: ${(props) => (props.darkMode ? "rgba(17,139,237,0.9)" : "rgba(17,139,237,0.9)")};
+        background: ${(props) =>
+                props.darkMode ? "rgba(17,139,237,0.9)" : "rgba(17,139,237,0.9)"};
         transition: 0.2s ease all;
     }
 

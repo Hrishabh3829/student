@@ -1,8 +1,16 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Bar } from "react-chartjs-2";
-import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from "chart.js";
-import "./Home.css"; // Import the CSS file
+import {
+    Chart as ChartJS,
+    CategoryScale,
+    LinearScale,
+    BarElement,
+    Title,
+    Tooltip,
+    Legend,
+} from "chart.js";
+import "./Home.css";
 
 // Register Chart.js components
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
@@ -25,55 +33,78 @@ const Home = () => {
     };
 
     const processChartData = (data) => {
-        const labels = data.map((student) => student.name);
-        const courses = data.map((student) => student.studentcourse);
+        const groupedData = data.reduce((acc, student) => {
+            if (!acc[student.name]) {
+                acc[student.name] = { courses: new Set() };
+            }
+            acc[student.name].courses.add(student.studentcourse); // Ensure unique courses
+            return acc;
+        }, {});
 
-        const uniqueCourses = [...new Set(courses)];
-        const colors = uniqueCourses.map(() => `#${Math.floor(Math.random() * 16777215).toString(16)}`);
+        const labels = Object.keys(groupedData); // X-axis: Student Names
+        const courses = Object.values(groupedData).map(
+            (student) => [...student.courses].join(", ")
+        );
 
-        const courseColors = {};
-        uniqueCourses.forEach((course, index) => {
-            courseColors[course] = colors[index];
-        });
+        const colors = labels.map(() => `#${Math.floor(Math.random() * 16777215).toString(16)}`);
 
-        const datasets = uniqueCourses.map((course) => ({
-            label: course,
-            data: labels.map((_, index) => (courses[index] === course ? 1 : 0)),
-            backgroundColor: courseColors[course],
-        }));
+        const datasets = [
+            {
+                label: "Number of Courses",
+                data: Object.values(groupedData).map((student) => student.courses.size),
+                backgroundColor: colors,
+            },
+        ];
 
         setChartData({
             labels,
             datasets,
+            courses,
         });
     };
 
     return (
-        <div className="chart-container">
-            <h1>Student Analytical Performance</h1>
+        <div className="main-container">
+            <h1 className="main-title">Student Analytical Performance</h1>
             {chartData ? (
-                <Bar
-                    data={chartData}
-                    options={{
-                        plugins: {
-                            legend: { position: "top" },
-                        },
-                        scales: {
-                            x: {
-                                title: { display: true, text: "Student Names" },
-                                ticks: {
-                                    align: 'center', // Ensure labels are centered
+                <div className="chart-wrapper">
+                    <Bar
+                        data={chartData}
+                        options={{
+                            responsive: true,
+                            maintainAspectRatio: true,
+                            plugins: {
+                                legend: { position: "top" },
+                                tooltip: {
+                                    callbacks: {
+                                        label: function (context) {
+                                            const index = context.dataIndex;
+                                            const courseList = chartData.courses[index];
+                                            return `Courses: ${courseList}`;
+                                        },
+                                    },
                                 },
                             },
-                            y: {
-                                title: { display: true, text: "Courses" },
-                                ticks: {
-                                    stepSize: 1,
+                            scales: {
+                                x: {
+                                    title: { display: true, text: "Student Names" },
+                                    ticks: {
+                                        autoSkip: false,
+                                        maxRotation: 0,
+                                        minRotation: 0,
+                                    },
+                                },
+                                y: {
+                                    title: { display: true, text: "Number of Courses" },
+                                    ticks: {
+                                        stepSize: 1,
+                                        beginAtZero: true,
+                                    },
                                 },
                             },
-                        },
-                    }}
-                />
+                        }}
+                    />
+                </div>
             ) : (
                 <p>Loading...</p>
             )}

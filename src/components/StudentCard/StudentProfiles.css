@@ -1,38 +1,80 @@
+/* Container styling for student cards */
 .student-cards-container {
     display: flex;
     flex-wrap: wrap;
-    gap: 16px;
-    padding: 16px;
-    justify-content: center;
+    gap: 20px; /* Add spacing between cards */
+    padding: 20px;
+    justify-content: center; /* Center cards */
+    background-color: #f4f7f9; /* Light, neutral background */
+    border-radius: 12px;
 }
 
+/* Individual student card styling */
 .student-card {
-    background-color: #f9f9f9;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 250px;
-    padding: 16px;
+    background-color: #ffffff; /* Clean white background */
+    border: 1px solid #e0e0e0; /* Subtle border */
+    border-radius: 12px; /* Rounded corners */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+    width: 280px; /* Consistent card width */
+    padding: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s; /* Smooth hover effects */
+    overflow: hidden;
 }
 
-.profile-photo img {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    object-fit: cover;
+.student-card:hover {
+    transform: translateY(-8px); /* Subtle lift effect on hover */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* Stronger shadow on hover */
+}
+
+/* Profile photo styling */
+.profile-photo {
+    width: 120px;
+    height: 120px;
     margin-bottom: 16px;
+    background-color: #e0f7fa; /* Placeholder color for icon background */
+    border-radius: 50%; /* Circle shape */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Depth for photo container */
 }
 
+.profile-photo svg {
+    font-size: 50px; /* Icon size */
+    color: #00796b; /* Icon color */
+}
+
+/* Student information styling */
 .student-info h3 {
     margin-bottom: 8px;
+    font-size: 20px;
+    color: #333333;
+    font-weight: bold;
 }
 
 .student-info p {
     margin: 4px 0;
     font-size: 14px;
-    color: #555;
+    color: #666666;
+}
+
+.student-info strong {
+    color: #00796b; /* Highlight key information */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .student-cards-container {
+        flex-direction: column; /* Stack cards vertically */
+        align-items: center; /* Center align for small screens */
+        padding: 10px;
+    }
+
+    .student-card {
+        width: 90%; /* Full width for smaller screens */
+    }
 }

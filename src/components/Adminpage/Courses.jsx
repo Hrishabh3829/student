@@ -7,24 +7,36 @@ const Courses = () => {
 
     useEffect(() => {
         const fetchData = async () => {
-            const res = await axios.get("http://localhost:8080/student/getAll");
-            setStudents(res.data);
+            try {
+                const res = await axios.get("http://localhost:8080/student/getAll");
+                setStudents(res.data);
+            } catch (error) {
+                alert("Failed to fetch students data.");
+                console.error(error);
+            }
         };
 
         fetchData();
     }, []);
 
     const handleMarkChange = (index, marks) => {
-        // Update marks for the student
         const updatedStudents = [...students];
         updatedStudents[index].studentmarks = marks;
         setStudents(updatedStudents);
     };
 
     const handleSubmit = async (student) => {
-        // You can send updated data to the backend here
-        const res = await axios.post("http://localhost:8080/student/add",student)
-        // console.log("Updated Student Data:", res);
+        try {
+            const res = await axios.post("http://localhost:8080/student/add", student);
+            if (res.status === 200 || res.status === 201) {
+                alert(`Marks updated successfully for ${student.name}`);
+            } else {
+                alert(`Failed to update marks for ${student.name}`);
+            }
+        } catch (error) {
+            alert(`Error updating marks for ${student.name}: ${error.message}`);
+            console.error(error);
+        }
     };
 
     return (

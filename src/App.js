@@ -8,7 +8,7 @@ import StudentProfile from './components/Adminpage/StudentProfile'
 import Courses from './components/Adminpage/Courses'
 import Settings from './components/Adminpage/Settings'
 import StudentAttendance from "./components/Adminpage/Student-attendance";
-import StudentReport from "./components/Adminpage/Student-report";
+import StudentReport from "./components/Adminpage/StudentReport";
 import Integrations from "./components/Adminpage/Integrations";
 import About from "./components/Adminpage/About";
 
