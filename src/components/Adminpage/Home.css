@@ -1,39 +1,52 @@
-/* Main container for the chart and title */
 .main-container {
-    width: 95%;
-    max-width: 1200px;
-    margin: 20px auto; /* Center the card */
     padding: 20px;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    background-color: #ffffff;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     text-align: center;
-    overflow: hidden; /* Prevent horizontal scrolling */
 }
 
-/* Title styling */
 .main-title {
-    font-family: "Arial", sans-serif;
-    font-size: 1.6rem; /* Balanced font size */
-    font-weight: bold;
-    color: #333;
-    margin-bottom: 20px;
+    font-size: 2rem;
+    margin-bottom: 30px;
 }
 
-/* Chart wrapper ensures proper spacing */
-.chart-wrapper {
-    width: 100%;
-    padding: 10px;
+.chart-section {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    margin-top: 20px;
+    flex-wrap: wrap;
 }
 
-/* Responsive adjustments */
-@media (max-width: 768px) {
-    .main-title {
-        font-size: 1.4rem; /* Smaller title for compact screens */
-    }
+.chart-card {
+    flex: 1;
+    min-width: 300px;
+    max-width: 500px;
+    background: #fff;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    text-align: center;
+}
 
-    .main-container {
-        padding: 15px; /* Compact padding */
+.chart-card h2 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+}
+
+/* Container for Pie Chart to make it smaller and adjustable */
+.pie-chart-container {
+    width: 120%;
+    margin-left: 25%;
+    height: 350px;  /* Adjust this height to fit your needs */
+    overflow: auto; /* Allow scrolling if needed */
+}
+
+/* Divider between charts */
+.divider {
+    width: 2px;
+    background: #ddd;
+    margin: 0 20px;
+    display: none;
+    @media (min-width: 768px) {
+        display: block;
     }
 }

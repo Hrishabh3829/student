@@ -5,6 +5,7 @@ import {
     Button,
     CssBaseline,
     Tooltip,
+    Typography,
 } from "@mui/material";
 import HomeIcon from "@mui/icons-material/Home";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
@@ -19,10 +20,18 @@ import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 import MenuIcon from "@mui/icons-material/Menu";
 import Brightness4Icon from "@mui/icons-material/Brightness4";
 import Brightness7Icon from "@mui/icons-material/Brightness7";
+import { BarChart, Bar, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip, Legend, ResponsiveContainer } from "recharts";
 
-// Import your background image
-import backgroundImage from "file:///C:/Users/hrish/Downloads/How-to-prototype-dashboard-1.png.webp"; // Adjust the path as necessary
+// Student Data in Increasing Order
+const studentData = [
+    { name: "Hrishabh", attendance: 75, marks: 80 },
+    { name: "Gaurav", attendance: 82, marks: 85 },
+    { name: "Sumit", attendance: 85, marks: 90 },
+    { name: "Ananta", attendance: 88, marks: 95 },
+    { name: "Mitesh", attendance: 90, marks: 92 },
+];
 
+// Your dashboard items data
 const DashboardItems = [
     { kind: "header", title: "Student Portal" },
     { segment: "home", title: "Home", icon: <HomeIcon fontSize="small" /> },
@@ -46,7 +55,7 @@ const DashboardItems = [
 export default function DashboardLayout() {
     const navigate = useNavigate();
     const [expanded, setExpanded] = useState(false);
-    const [darkMode, setDarkMode] = useState(false); // Default to light mode
+    const [darkMode, setDarkMode] = useState(false);
     const [collapsed, setCollapsed] = useState(true);
 
     const handleNavigation = (path) => {
@@ -57,43 +66,21 @@ export default function DashboardLayout() {
         }
     };
 
-    const toggleDarkMode = () => setDarkMode(!darkMode); // Toggle between dark and light modes
-    const toggleSidebar = () => setCollapsed(!collapsed); // Toggle sidebar collapsed state
+    const toggleDarkMode = () => setDarkMode(!darkMode);
+    const toggleSidebar = () => setCollapsed(!collapsed);
     const handleReportsClick = () => {
         setExpanded(!expanded);
-        setCollapsed(false); // Ensure sidebar is expanded when clicking on reports
+        setCollapsed(false);
     };
 
     return (
         <>
             <CssBaseline />
-            <Box
-                sx={{
-                    height: "100vh",
-                    display: "flex",
-                    position: "relative",
-                }}
-            >
-                {/* Background Image */}
-                <Box
-                    sx={{
-                        position: "absolute",
-                        top: 0,
-                        left: 0,
-                        right: 0,
-                        bottom: 0,
-                        backgroundImage: `url(${backgroundImage})`,
-                        backgroundSize: "cover",
-                        backgroundRepeat: "no-repeat",
-                        backgroundPosition: "center",
-                        zIndex: -1, // Ensure the background is behind other elements
-                    }}
-                />
-
+            <Box sx={{ height: "100vh", display: "flex", position: "relative" }}>
                 {/* Sidebar */}
                 <Box
                     sx={{
-                        width: collapsed ? "60px" : "250px", // Adjust sidebar width based on collapsed state
+                        width: collapsed ? "60px" : "250px",
                         backgroundColor: darkMode ? "#1f1f1f" : "#fff",
                         padding: "20px 10px",
                         display: "flex",
@@ -104,7 +91,6 @@ export default function DashboardLayout() {
                         boxShadow: !darkMode ? "0px 0px 8px rgba(0, 0, 0, 0.1)" : "none",
                     }}
                 >
-                    {/* Sidebar Toggle Button */}
                     <Button
                         onClick={toggleSidebar}
                         sx={{
@@ -116,9 +102,7 @@ export default function DashboardLayout() {
                             display: "flex",
                             justifyContent: "center",
                             alignItems: "center",
-                            "&:hover": {
-                                backgroundColor: "#e0e0e0",
-                            },
+                            "&:hover": { backgroundColor: "#e0e0e0" },
                             marginBottom: "20px",
                         }}
                     >
@@ -144,9 +128,7 @@ export default function DashboardLayout() {
                                                 color: darkMode ? "#fff" : "#1976d2",
                                                 justifyContent: "flex-start",
                                                 alignItems: "center",
-                                                "&:hover": {
-                                                    backgroundColor: "#f5f5f5",
-                                                },
+                                                "&:hover": { backgroundColor: "#f5f5f5" },
                                                 padding: "8px 10px",
                                                 textAlign: "left",
                                                 gap: 1,
@@ -170,9 +152,7 @@ export default function DashboardLayout() {
                                                         justifyContent: "flex-start",
                                                         alignItems: "center",
                                                         marginLeft: "20px",
-                                                        "&:hover": {
-                                                            backgroundColor: "#f5f5f5",
-                                                        },
+                                                        "&:hover": { backgroundColor: "#f5f5f5" },
                                                         padding: "8px 10px",
                                                         gap: 1,
                                                     }}
@@ -198,9 +178,7 @@ export default function DashboardLayout() {
                                         display: "flex",
                                         alignItems: "center",
                                         justifyContent: "flex-start",
-                                        "&:hover": {
-                                            backgroundColor: "#f5f5f5",
-                                        },
+                                        "&:hover": { backgroundColor: "#f5f5f5" },
                                         padding: "8px 10px",
                                         gap: 1,
                                     }}
@@ -265,9 +243,38 @@ export default function DashboardLayout() {
                         flexGrow: 1,
                         padding: "20px",
                         textAlign: "center",
+                        marginLeft: collapsed ? "60px" : "250px", // Adjust content margin to avoid overlap
                     }}
                 >
-                    <h1>Welcome to the Dashboard!</h1>
+                    {/* Histogram (BarChart) */}
+                    <Typography variant="h6" sx={{ marginBottom: 3 }}>
+                        Student Attendance Histogram
+                    </Typography>
+                    <ResponsiveContainer width="100%" height={200}>
+                        <BarChart data={studentData}>
+                            <CartesianGrid strokeDasharray="3 3" />
+                            <XAxis dataKey="name" />
+                            <YAxis />
+                            <RechartsTooltip />
+                            <Legend />
+                            <Bar dataKey="attendance" fill="#8884d8" />
+                        </BarChart>
+                    </ResponsiveContainer>
+
+                    {/* Line Chart */}
+                    <Typography variant="h6" sx={{ marginBottom: 3, marginTop: 4 }}>
+                        Student Marks Line Chart
+                    </Typography>
+                    <ResponsiveContainer width="100%" height={200}>
+                        <LineChart data={studentData}>
+                            <CartesianGrid strokeDasharray="3 3" />
+                            <XAxis dataKey="name" />
+                            <YAxis />
+                            <RechartsTooltip />
+                            <Legend />
+                            <Line type="monotone" dataKey="marks" stroke="#8884d8" />
+                        </LineChart>
+                    </ResponsiveContainer>
                 </Box>
             </Box>
         </>

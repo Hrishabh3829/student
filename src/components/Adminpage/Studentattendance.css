@@ -1,98 +1,92 @@
-/*!* General Styling *!*/
-/*body {*/
-/*    font-family: Arial, sans-serif;*/
-/*    margin: 0;*/
-/*    padding: 0;*/
-/*    background-color: #f9f9f9;*/
-/*    color: #333;*/
-/*}*/
+/* Scoped Styles for Student Attendance */
+.student-attendance {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    color: #333;
+    text-align: center;
+}
 
-/*!* Container *!*/
-/*div {*/
-/*    margin: 0 auto;*/
-/*    padding: 20px;*/
-/*    max-width: 800px;*/
-/*    background: white;*/
-/*    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);*/
-/*    border-radius: 8px;*/
-/*}*/
+.student-attendance h1 {
+    color: #4CAF50;
+    margin-bottom: 20px;
+}
 
-/*!* Header Styling *!*/
-/*h1 {*/
-/*    text-align: center;*/
-/*    color: #4caf50;*/
-/*    font-size: 2rem;*/
-/*    margin-bottom: 20px;*/
-/*    border-bottom: 2px solid #e0e0e0;*/
-/*    padding-bottom: 10px;*/
-/*}*/
+/* Form Section */
+.student-attendance .form-section {
+    margin: 20px 0;
+}
 
-/*!* Form Controls *!*/
-/*label {*/
-/*    font-weight: bold;*/
-/*    margin-right: 10px;*/
-/*    display: inline-block;*/
-/*    margin-bottom: 10px;*/
-/*}*/
+.student-attendance label {
+    font-weight: bold;
+    margin-right: 10px;
+}
 
-/*select, button {*/
-/*    padding: 10px 15px;*/
-/*    margin: 10px 0;*/
-/*    border: 1px solid #ccc;*/
-/*    border-radius: 4px;*/
-/*    font-size: 1rem;*/
-/*    width: 100%;*/
-/*    max-width: 300px;*/
-/*}*/
+.student-attendance select {
+    padding: 10px;
+    margin: 0 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
 
-/*button {*/
-/*    background-color: #4caf50;*/
-/*    color: white;*/
-/*    cursor: pointer;*/
-/*    transition: background-color 0.3s;*/
-/*}*/
+.student-attendance button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s;
+}
 
-/*button:hover {*/
-/*    background-color: #45a049;*/
-/*}*/
+.student-attendance button:hover {
+    background-color: #45a049;
+}
 
-/*!* Attendance Records Section *!*/
-/*h2 {*/
-/*    font-size: 1.5rem;*/
-/*    color: #333;*/
-/*    margin-top: 30px;*/
-/*    border-bottom: 1px solid #e0e0e0;*/
-/*    padding-bottom: 5px;*/
-/*}*/
+/* Records Section */
+.student-attendance .records-section {
+    margin-top: 30px;
+}
 
-/*ul {*/
-/*    list-style: none;*/
-/*    padding: 0;*/
-/*}*/
+.student-attendance ul {
+    list-style: none;
+    padding: 0;
+}
 
-/*ul li {*/
-/*    background: #f1f1f1;*/
-/*    margin: 10px 0;*/
-/*    padding: 15px;*/
-/*    border-radius: 4px;*/
-/*    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);*/
-/*    font-size: 1rem;*/
-/*    display: flex;*/
-/*    justify-content: space-between;*/
-/*}*/
+.student-attendance ul li {
+    background: #f9f9f9;
+    margin: 10px auto;
+    padding: 10px 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    max-width: 400px;
+    text-align: left;
+}
 
-/*!* Responsive Design *!*/
-/*@media (max-width: 600px) {*/
-/*    div {*/
-/*        padding: 10px;*/
-/*    }*/
+/* Table for Attendance List */
+.attendance-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
 
-/*    select, button {*/
-/*        width: 100%;*/
-/*        font-size: 0.9rem;*/
-/*    }*/
+.attendance-table th,
+.attendance-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
 
-/*    h1, h2 {*/
-/*        font-size: 1.5rem;*/
-/*    }*/
-/*}*/
+.attendance-table th {
+    background-color: #f2f2f2;
+    color: #333;
+    font-weight: bold;
+}
+
+.attendance-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.attendance-table tr:hover {
+    background-color: #f1f1f1;
+}

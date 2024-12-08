@@ -14,6 +14,11 @@ const Login = () => {
         navigate('/admin'); // Navigate to the admin page on button click
     };
 
+    const handleSignUp = (e) => {
+        e.preventDefault();
+        alert('New user registered successfully!'); // Display alert message
+    };
+
     return (
         <StyledWrapper>
             <StyledButton onClick={handleAdminRedirect}>
@@ -40,7 +45,8 @@ const Login = () => {
                         </span>
                     </form>
 
-                    <form className="form">
+                    {/* Sign-Up Form with Alert */}
+                    <form className="form" onSubmit={handleSignUp}>
                         <span className="title">Sign Up</span>
                         <div className="form_control">
                             <input type="text" className="input" required />
@@ -66,11 +72,11 @@ const Login = () => {
     );
 };
 
-// Define button styling directly within this component
+// Styling remains the same
 const StyledButton = styled.button`
     position: absolute;
-    top: 45px; /* Adjusted for better positioning */
-    right: 10px; /* Adjusted for better positioning */
+    top: 45px;
+    right: 10px;
     padding: 0.1em 0.25em;
     width: 13em;
     height: 4.2em;
@@ -79,7 +85,7 @@ const StyledButton = styled.button`
     border-radius: 0.3em;
     font-size: 12px;
     cursor: pointer;
-    z-index: 10; /* Ensures it stays on top */
+    z-index: 10;
 
     span {
         position: relative;
@@ -155,13 +161,13 @@ const StyledWrapper = styled.div`
         font-size: 2em;
     }
 
-    form .form_control {
+    .form_control {
         width: 100%;
         position: relative;
         overflow: hidden;
     }
 
-    form .form_control .label {
+    .form_control .label {
         position: absolute;
         top: 50%;
         left: 10px;
@@ -173,7 +179,7 @@ const StyledWrapper = styled.div`
         color: #b0b0b0;
     }
 
-    form .form_control .input {
+    .form_control .input {
         width: 100%;
         background-color: transparent;
         border: none;
@@ -186,13 +192,13 @@ const StyledWrapper = styled.div`
         box-shadow: 0px 0px 0px #0e0e0e, 0px 0px 0px rgb(95 94 94 / 25%), inset 1.5px 1.5px 3px #0e0e0e, inset -1.5px -1.5px 3px #5f5e5e;
     }
 
-    form .form_control .input:focus,
-    form .form_control .input:valid {
+    .form_control .input:focus,
+    .form_control .input:valid {
         box-shadow: 0px 0px 0px #0e0e0e, 0px 0px 0px rgb(95 94 94 / 25%), inset 3px 3px 4px #0e0e0e, inset -3px -3px 4px #5f5e5e;
     }
 
-    form .form_control .input:focus + .label,
-    form .form_control .input:valid + .label {
+    .form_control .input:focus + .label,
+    .form_control .input:valid + .label {
         transform: translate(-150%, -50%);
     }
 

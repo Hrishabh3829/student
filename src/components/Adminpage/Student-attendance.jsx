@@ -54,7 +54,7 @@ const StudentAttendance = () => {
         }
     };
 
-    // Fetch data for the full attendance list
+    // Fetch data for the full attendance list (including course)
     const fetchData = async () => {
         try {
             const response = await axios.get("http://localhost:8080/student/getAll");
@@ -106,13 +106,24 @@ const StudentAttendance = () => {
                 >
                     View Attendance
                 </button>
-                <ul id="attandanceList">
+                <table className="attendance-table">
+                    <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Course</th> {/* Added course column */}
+                        <th>Attendance Status</th>
+                    </tr>
+                    </thead>
+                    <tbody>
                     {fetchedAttendanceList.map((student, index) => (
-                        <li key={index}>
-                            {student.name} - ATTENDANCE: {student.attendanceStatus}
-                        </li>
+                        <tr key={index}>
+                            <td>{student.name}</td>
+                            <td>{student.studentcourse}</td> {/* Display course */}
+                            <td>{student.attendanceStatus}</td>
+                        </tr>
                     ))}
-                </ul>
+                    </tbody>
+                </table>
             </div>
         </div>
     );
