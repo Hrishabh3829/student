@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/static/css/main.3b0a352e.css",
+    "main.js": "/static/js/main.a7bf979e.js",
+    "static/js/453.55cc3f1b.chunk.js": "/static/js/453.55cc3f1b.chunk.js",
+    "static/media/How-to-prototype-dashboard-1.png.webp": "/static/media/How-to-prototype-dashboard-1.png.499255b14187e26092a3.webp",
+    "index.html": "/index.html",
+    "main.3b0a352e.css.map": "/static/css/main.3b0a352e.css.map",
+    "main.a7bf979e.js.map": "/static/js/main.a7bf979e.js.map",
+    "453.55cc3f1b.chunk.js.map": "/static/js/453.55cc3f1b.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.3b0a352e.css",
+    "static/js/main.a7bf979e.js"
+  ]
+}
