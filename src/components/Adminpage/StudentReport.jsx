@@ -36,7 +36,7 @@ const StudentReport = () => {
     useEffect(() => {
         const fetchStudentData = async () => {
             try {
-                const response = await axios.get("http://localhost:8080/student/getAll");
+                const response = await axios.get("https://student-backend-production-96c4.up.railway.app/student/getAll");
                 setStudents(response.data);
             } catch (error) {
                 console.error("Error fetching student data:", error);

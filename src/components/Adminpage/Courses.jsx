@@ -8,7 +8,7 @@ const Courses = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const res = await axios.get("http://localhost:8080/student/getAll");
+                const res = await axios.get("https://student-backend-production-96c4.up.railway.app/student/getAll");
                 setStudents(res.data);
             } catch (error) {
                 alert("Failed to fetch students data.");
@@ -27,7 +27,7 @@ const Courses = () => {
 
     const handleSubmit = async (student) => {
         try {
-            const res = await axios.post("http://localhost:8080/student/add", student);
+            const res = await axios.post("https://student-backend-production-96c4.up.railway.app/student/add", student);
             if (res.status === 200 || res.status === 201) {
                 alert(`Marks updated successfully for ${student.name}`);
             } else {

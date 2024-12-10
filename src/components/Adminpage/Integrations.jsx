@@ -27,7 +27,7 @@ const Integrations = () => {
         };
 
         try {
-            const response = await fetch("http://localhost:8080/student/add", {
+            const response = await fetch("https://student-backend-production-96c4.up.railway.app/student/add", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

@@ -8,7 +8,7 @@ const StudentProfile = () => {
 
     useEffect(()=>{
         const getAllData = async () => {
-            const res = (await axios.get("http://localhost:8080/student/getAll")).data;
+            const res = (await axios.get("https://student-backend-production-96c4.up.railway.app/student/getAll")).data;
             setStud(res)
         };
         getAllData()

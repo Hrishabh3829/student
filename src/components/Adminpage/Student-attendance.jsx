@@ -12,7 +12,7 @@ const StudentAttendance = () => {
     // Fetch all students
     const fetchStudents = async () => {
         try {
-            const response = await axios.get("http://localhost:8080/student/getAll");
+            const response = await axios.get("https://student-backend-production-96c4.up.railway.app/student/getAll");
             setStudents(response.data);
         } catch (error) {
             console.error("Error fetching students:", error);
@@ -32,7 +32,7 @@ const StudentAttendance = () => {
         }
         try {
             await axios.put(
-                `http://localhost:8080/student/markAttendance/${selectedStudent}?status=${attendanceStatus}`
+                `https://student-backend-production-96c4.up.railway.app/student/markAttendance/${selectedStudent}?status=${attendanceStatus}`
             );
             alert("Attendance marked successfully!");
             await fetchAttendanceRecords(selectedStudent);
@@ -45,7 +45,7 @@ const StudentAttendance = () => {
     const fetchAttendanceRecords = async (studentId) => {
         try {
             const response = await axios.get(
-                `http://localhost:8080/student/getAttendance/${studentId}`
+                `https://student-backend-production-96c4.up.railway.app/student/getAttendance/${studentId}`
             );
             const data = Array.isArray(response.data) ? response.data : []; // Ensure it's an array
             setAttendanceRecords(data);
@@ -57,7 +57,7 @@ const StudentAttendance = () => {
     // Fetch data for the full attendance list (including course)
     const fetchData = async () => {
         try {
-            const response = await axios.get("http://localhost:8080/student/getAll");
+            const response = await axios.get("https://student-backend-production-96c4.up.railway.app/student/getAll");
             const data = response.data || [];
             setFetchedAttendanceList(data);
         } catch (error) {

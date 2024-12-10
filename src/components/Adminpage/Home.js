@@ -33,7 +33,7 @@ const Home = () => {
     // Fetch all students data
     const fetchStudents = async () => {
         try {
-            const response = await axios.get("http://localhost:8080/student/getAll");
+            const response = await axios.get("https://student-backend-production-96c4.up.railway.app/student/getAll");
             console.log("Students Data:", response.data);
             setStudents(response.data);
             processCourseChartData(response.data);
@@ -45,7 +45,7 @@ const Home = () => {
     // Fetch attendance data
     const fetchAttendance = async () => {
         try {
-            const response = await axios.get("http://localhost:8080/student/getAll");
+            const response = await axios.get("https://student-backend-production-96c4.up.railway.app/student/getAll");
             console.log("Attendance Data:", response.data);
             setAttendanceList(response.data);
             processAttendanceChartData(response.data);
