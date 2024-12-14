@@ -2,8 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import Brightness4Icon from "@mui/icons-material/Brightness4";
 import Brightness7Icon from "@mui/icons-material/Brightness7";
-import backgroundImage from "file:///C:/Users/hrish/Downloads/How-to-prototype-dashboard-1.png.webp";
-import {Box} from "@mui/material";
+
 
 const Integrations = () => {
     const [darkMode, setDarkMode] = useState(false);
@@ -113,20 +112,7 @@ const Integrations = () => {
                 <p>Student Course: {studentCourse}</p>
             </div>
 
-            <Box
-                sx={{
-                    position: "absolute",
-                    top: 0,
-                    left: 0,
-                    right: 0,
-                    bottom: 0,
-                    backgroundImage: `url(${backgroundImage})`,
-                    backgroundSize: "cover",
-                    backgroundRepeat: "no-repeat",
-                    backgroundPosition: "center",
-                    zIndex: -1, // Ensure the background is behind other elements
-                }}
-            />
+
         </StyledWrapper>
     );
 };
